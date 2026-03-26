@@ -1,39 +1,3 @@
-import pydeck as pdk
-
-# --- 1. DEFINE THE 3D MAP LAYER ---
-# We use a ColumnLayer to make the pothole locations look like glowing 3D bars
-layer = pdk.Layer(
-    "ColumnLayer",
-    data=df,  # Use your pothole dataframe here
-    get_position=["longitude", "latitude"],
-    get_elevation=1000,  # This makes them pop out of the ground in 3D
-    elevation_scale=1,
-    radius=50,
-    get_fill_color=[0, 242, 255, 140],  # Neon Cyan with some transparency
-    pickable=True,
-    auto_highlight=True,
-)
-
-# --- 2. DEFINE THE MAP VIEW ---
-# This sets the camera angle to a "cool" 45-degree tilt
-view_state = pdk.ViewState(
-    latitude=df["latitude"].mean(),
-    longitude=df["longitude"].mean(),
-    zoom=11,
-    pitch=45,  # The 'tilt' for the 3D look
-)
-
-# --- 3. RENDER THE MAP ---
-st.markdown("### 🗺️ Real-time Geospatial Heatmap")
-st.pydeck_chart(pdk.Deck(
-    map_style="mapbox://styles/mapbox/dark-v11",  # High-contrast dark mode
-    initial_view_state=view_state,
-    layers=[layer],
-    tooltip={
-        "html": "<b>Severity:</b> {severity}<br/><b>Location:</b> {latitude}, {longitude}",
-        "style": {"backgroundColor": "#7000ff", "color": "white"}
-    }
-))
 
 import streamlit as st
 

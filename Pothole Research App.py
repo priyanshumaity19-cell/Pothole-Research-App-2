@@ -1,4 +1,75 @@
 import streamlit as st
+
+# --- COPY & PASTE STARTING HERE ---
+st.set_page_config(page_title="RoadWatch AI", layout="wide")
+
+# Injection of Custom CSS for the "Modern Tech" look
+st.markdown("""
+    <style>
+    /* 1. Main Background and Font */
+    .stApp {
+        background-color: #0e1117;
+        color: #ffffff;
+    }
+
+    /* 2. Glassmorphism Effect for Metric Cards */
+    [data-testid="stMetric"] {
+        background: rgba(255, 255, 255, 0.05) !important;
+        padding: 20px !important;
+        border-radius: 15px !important;
+        border: 1px solid rgba(0, 242, 255, 0.2) !important;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+        backdrop-filter: blur(10px) !important;
+        transition: transform 0.3s ease;
+    }
+    
+    [data-testid="stMetric"]:hover {
+        transform: translateY(-5px);
+        border: 1px solid rgba(0, 242, 255, 0.5) !important;
+    }
+
+    /* 3. Neon Gradient Title */
+    .hero-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 45px;
+        font-weight: 800;
+        background: -webkit-linear-gradient(45deg, #00f2ff, #7000ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0px;
+    }
+
+    /* 4. Styled Sidebar */
+    [data-testid="stSidebar"] {
+        background-color: #161b22 !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* 5. Custom Button Styling */
+    .stButton>button {
+        background: linear-gradient(45deg, #00f2ff, #7000ff);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        padding: 10px 20px;
+        width: 100%;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+# --- HOW TO USE THE NEW TITLE ---
+st.markdown('<h1 class="hero-title">RoadWatch AI & Civic Reporting</h1>', unsafe_allow_html=True)
+st.write("Research Focus: Passive accelerometer-based detection & orientation normalization")
+
+# --- YOUR METRICS (They will auto-style) ---
+cols = st.columns(4)
+cols[0].metric("Total Incidents", "100", "+12% vs last week")
+cols[1].metric("Avg. Jolt Magnitude", "0.78g", "Target: 0.5g")
+cols[2].metric("Precision (v1.8)", "82%", "Target: >85%")
+cols[3].metric("Localization Error", "5.4m", "Target: <5m")
+
+import streamlit as st
 import pandas as pd
 import numpy as np
 import pydeck as pdk
